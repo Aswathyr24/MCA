@@ -1,0 +1,3 @@
+Anu Total=251 Avg=83.66666666666667
+Rahul Total=207 Avg=69.0
+Meera Total=273 Avg=91.0
