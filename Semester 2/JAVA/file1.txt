@@ -1,0 +1,72 @@
+SET - A
+2nd question
+DELIMITER $$
+CREATE PROCEDURE IncreaseSalary()
+BEGIN
+DECLARE done INT DEFAULT FALSE;
+DECLARE v_id INT;
+DECLARE v_sal DECIMAL(10,2);
+DECLARE emp_cursor CURSOR FOR
+SELECT emp_id,salary from Employee;//table fields from table name
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+OPEN emp_cursor;
+read_loop: LOOP
+FETCH emp_cursor INTO v_id, v_sal;
+IF done THEN
+LEAVE read_loop;
+END IF;
+UPDATE EMployee SET salary = v_sal * 1.15 WHERE empid = v_id;
+END LOOP;
+CLOSE emp_cursor;
+END $$
+
+//Query oke varum terminal il//
+//athu kazhinju//
+
+DELIMITER ;
+
+//then call cheyyan
+
+CALL IncreaseSalary();
+
+//procedure work cheyyum kanan vendi//
+
+SELECT * FROM Employee;
+
+SET _B 
+2 nd
+DELIMITER $$
+CREATE PROCEDURE CheckSalaryEligibility()
+BEGIN
+DECLARE done INT DEFAULT FALSE;
+DECLARE v_empid INT;
+DECLARE v_name VARCHAR(50);
+DECLARE v_salary DECIMAL(10,2);
+DECLARE cur CURSOR FOR
+SELECT emp_id,name,salary as decimal(10,2) from Employee;//table fields from table name
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+OPEN cur;
+read_loop: LOOP
+FETCH cur INTO v_empid, v_name, v_salary;
+IF done THEN
+LEAVE read_loop;
+END IF;
+IF v_salary > 200000 THEN
+SELECT v_empid, AS empid, v_name AS name, v_salary AS Salary;
+ELSE
+SELECT v_empid AS empid, v_name AS name, 'Not Eligible' AS Status;
+END IF;
+END LOOP;
+CLOSE cur;
+END $$
+
+//Query oke varum terminal il//
+//athu kazhinju//
+
+DELIMITER ;
+
+//then call cheyyan
+
+CALL CheckSalaryEligibility();
+
+
