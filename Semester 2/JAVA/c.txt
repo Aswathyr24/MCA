@@ -1,0 +1,1185 @@
+//Main program name MatrixType - identity,diagonal,symmetric,normal-multplication
+import java.util.Scanner;
+
+class MatrixType {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int r, c;
+        System.out.print("Enter rows and columns: ");
+        r = sc.nextInt();
+        c = sc.nextInt();
+
+        int A[][] = new int[r][c];
+
+        System.out.println("Enter matrix:");
+        for(int i = 0; i < r; i++) {
+            for(int j = 0; j < c; j++) {
+                A[i][j] = sc.nextInt();
+            }
+        }
+
+        int isIdentity = 1, isDiagonal = 1, isSymmetric = 1;
+
+        // Check Identity & Diagonal
+        if(r == c) {
+            for(int i = 0; i < r; i++) {
+                for(int j = 0; j < c; j++) {
+
+                    // Identity check
+                    if(i == j && A[i][j] != 1)
+                        isIdentity = 0;
+                    if(i != j && A[i][j] != 0)
+                        isIdentity = 0;
+
+                    // Diagonal check
+                    if(i != j && A[i][j] != 0)
+                        isDiagonal = 0;
+                }
+            }
+        } else {
+            isIdentity = 0;
+            isDiagonal = 0;
+        }
+
+        // Check Symmetric
+        if(r == c) {
+            for(int i = 0; i < r; i++) {
+                for(int j = 0; j < c; j++) {
+                    if(A[i][j] != A[j][i])
+                        isSymmetric = 0;
+                }
+            }
+        } else {
+            isSymmetric = 0;
+        }
+
+        // Output
+        if(isIdentity == 1)
+            System.out.println("Identity Matrix");
+        else if(isDiagonal == 1)
+            System.out.println("Diagonal Matrix");
+        else if(isSymmetric == 1)
+            System.out.println("Symmetric Matrix");
+        else {
+            System.out.println("Normal Matrix");
+
+            // MATRIX MULTIPLICATION
+            System.out.print("Enter rows and columns of second matrix: ");
+            int r2 = sc.nextInt();
+            int c2 = sc.nextInt();
+
+            if(c != r2) {
+                System.out.println("Multiplication not possible");
+                return;
+            }
+
+            int B[][] = new int[r2][c2];
+            int result[][] = new int[r][c2];
+
+            System.out.println("Enter second matrix:");
+            for(int i = 0; i < r2; i++) {
+                for(int j = 0; j < c2; j++) {
+                    B[i][j] = sc.nextInt();
+                }
+            }
+
+            // Multiplication
+            for(int i = 0; i < r; i++) {
+                for(int j = 0; j < c2; j++) {
+                    result[i][j] = 0;
+                    for(int k = 0; k < c; k++) {
+                        result[i][j] += A[i][k] * B[k][j];
+                    }
+                }
+            }
+
+            // Display result
+            System.out.println("Result:");
+            for(int i = 0; i < r; i++) {
+                for(int j = 0; j < c2; j++) {
+                    System.out.print(result[i][j] + " ");
+                }
+                System.out.println();
+            }
+        }
+
+        sc.close();
+    }
+}
+
+//Symetric or not 
+import java.util.Scanner;
+
+public class symmetricMatrix {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        int[][] a = new int[n][n];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                a[i][j] = sc.nextInt();
+            }
+        }
+
+        boolean symmetric = true;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (a[i][j] != a[j][i]) {
+                    symmetric = false;
+                    break;
+                }
+            }
+        }
+
+        if (symmetric)
+            System.out.println("Symmetric Matrix");
+        else
+            System.out.println("Not a Symmetric Matrix");
+
+        sc.close();
+    }
+}
+
+
+// matrix addition
+import java.util.Scanner;
+
+public class matrixAddition {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int r = sc.nextInt();
+        int c = sc.nextInt();
+
+        int[][] a = new int[r][c];
+        int[][] b = new int[r][c];
+        int[][] s = new int[r][c];
+
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                a[i][j] = sc.nextInt();
+            }
+        }
+
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                b[i][j] = sc.nextInt();
+            }
+        }
+
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                s[i][j] = a[i][j] + b[i][j];
+            }
+        }
+
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                System.out.print(s[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        sc.close();
+    }
+}
+
+
+//Complex number addition
+import java.util.Scanner;
+
+class Complex {
+    int real;
+    int imag;
+
+    Complex(int r, int i) {
+        real = r;
+        imag = i;
+    }
+
+    void display() {
+        System.out.println(real + " + " + imag + "i");
+    }
+}
+
+public class Maintain {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int r1 = sc.nextInt();
+        int i1 = sc.nextInt();
+        int r2 = sc.nextInt();
+        int i2 = sc.nextInt();
+
+        Complex c1 = new Complex(r1, i1);
+        Complex c2 = new Complex(r2, i2);
+
+        Complex sum = new Complex(c1.real + c2.real, c1.imag + c2.imag);
+
+        sum.display();
+
+        sc.close();
+    }
+}
+
+
+//Sort strings
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class SortStrings {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of strings: ");
+        int n = sc.nextInt();
+        sc.nextLine(); // consume newline
+
+        String[] arr = new String[n];
+
+        System.out.println("Enter strings:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextLine();
+        }
+
+        // Sorting
+        Arrays.sort(arr);
+
+        System.out.println("Sorted strings:");
+        for (int i = 0; i < n; i++) {
+            System.out.println(arr[i]);
+        }
+
+        sc.close();
+    }
+}
+
+//Element search in array
+import java.util.Scanner;
+
+public class SearchArray {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of elements: ");
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+
+        System.out.println("Enter elements:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        System.out.print("Enter element to search: ");
+        int key = sc.nextInt();
+
+        boolean found = false;
+
+        for (int i = 0; i < n; i++) {
+            if (arr[i] == key) {
+                System.out.println("Element found at position: " + (i + 1));
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            System.out.println("Element not found");
+        }
+
+        sc.close();
+    }
+}
+//Employee search 
+import java.util.Scanner;
+
+public class SearchArray {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of elements: ");
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+
+        System.out.println("Enter elements:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        System.out.print("Enter element to search: ");
+        int key = sc.nextInt();
+
+        boolean found = false;
+
+        for (int i = 0; i < n; i++) {
+            if (arr[i] == key) {
+                System.out.println("Element found at position: " + (i + 1));
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            System.out.println("Element not found");
+        }
+
+        sc.close();
+    }
+}
+
+//String manipulation
+
+import java.util.Scanner;
+
+public class StringManipulation {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        String str = sc.nextLine();
+
+        // Length
+        System.out.println("Length: " + str.length());
+
+        // Uppercase
+        System.out.println("Uppercase: " + str.toUpperCase());
+
+        // Lowercase
+        System.out.println("Lowercase: " + str.toLowerCase());
+
+        // Reverse
+        String rev = "";
+        for (int i = str.length() - 1; i >= 0; i--) {
+            rev += str.charAt(i);
+        }
+        System.out.println("Reversed: " + rev);
+
+        // Concatenation
+        System.out.println("After Concatenation: " + str.concat(" Java"));
+
+        sc.close();
+    }
+}
+//Area 
+import java.util.*;
+class Area {
+void area(int side) {
+System.out.println("Square Area = " + (side * side));
+}
+void area(int l, int b) {
+System.out.println("Rectangle Area = " + (l * b));
+}
+void area(double r) {
+System.out.println("Circle Area = " + (3.14 * r * r));
+}
+public static void main(String args[]) {
+Scanner sc = new Scanner(System.in);
+Area obj = new Area();
+System.out.println("1.Square 2.Rectangle 3.Circle");
+int ch = sc.nextInt();
+if (ch == 1) {
+System.out.print("Enter side: ");
+obj.area(sc.nextInt());
+} else if (ch == 2) {
+System.out.print("Enter length & breadth: ");
+obj.area(sc.nextInt(), sc.nextInt());
+} else {
+System.out.print("Enter radius: ");
+obj.area(sc.nextDouble());
+}
+}
+}
+//Bank oprs
+import java.util.*;
+class Account {
+int accNo;
+String type;
+
+
+
+double balance;
+Account(int no, String t, double b) {
+accNo = no;
+type = t;
+balance = b;
+}
+void deposit(double amt) {
+balance += amt;
+}
+void withdraw(double amt) {
+balance -= amt;
+}
+void display() {
+System.out.println("Account No: " + accNo +
+" Type: " + type + " Balance: " + balance);
+
+}
+}
+class Person {
+String name;
+int age;
+ArrayList<Account> accounts = new ArrayList<>();
+Person(String n, int a) {
+name = n;
+age = a;
+}
+void addAccount(Account a) {
+accounts.add(a);
+}
+void showAccounts() {
+System.out.println("Accounts of " + name);
+
+
+
+for(Account a : accounts)
+a.display();
+}
+}
+public class BankDemo {
+public static void main(String[] args) {
+Person p = new Person("John", 30);
+p.addAccount(new Account(101,"Savings",5000));
+p.addAccount(new Account(102,"Current",10000));
+p.showAccounts();
+}
+}
+//Complex oprs
+class Complex {
+double real, imag;
+Complex(double r, double i) {
+real = r;
+imag = i;
+}
+static Complex add(Complex a, Complex b) {
+return new Complex(a.real + b.real, a.imag + b.imag);
+}
+static Complex sub(Complex a, Complex b) {
+return new Complex(a.real - b.real, a.imag - b.imag);
+}
+static Complex mul(Complex a, Complex b) {
+return new Complex(a.real*b.real - a.imag*b.imag,
+a.real*b.imag + a.imag*b.real);
+
+}
+double magnitude() {
+return Math.sqrt(real*real + imag*imag);
+}
+Complex conjugate() {
+return new Complex(real, -imag);
+}
+void display() {
+System.out.println(real + " + i" + imag);
+}
+}
+public class ComplexDemo {
+	public static void main(String[] args) {
+		Complex c1 = new Complex(3,4);
+		Complex c2 = new Complex(2,5);
+		Complex sum = Complex.add(c1,c2);
+		Complex diff = Complex.sub(c1,c2);
+		Complex prod = Complex.mul(c1,c2);
+		System.out.print("Sum: ");
+		sum.display();
+		System.out.print("Difference: ");
+		diff.display();
+		System.out.print("Product: ");
+		prod.display();
+		System.out.println("Magnitude of c1: " + c1.magnitude());
+		System.out.print("Conjugate of c1: ");
+		c1.conjugate().display();
+	}
+}
+
+//inheritance
+class Person {
+String name;
+int age;
+Person(String n,int a){
+name=n;
+age=a;
+}
+void display(){
+System.out.println("Name: "+name+" Age:"+age);
+}
+}
+class Student extends Person{
+int roll;
+String branch;
+Student(String n,int a,int r,String b){
+super(n,a);
+roll=r;
+branch=b;
+}
+void display(){
+super.display();
+System.out.println("Roll:"+roll+" Branch:"+branch);
+}
+}
+class Employee extends Person{
+int empId;
+
+Employee(String n,int a,int id){
+super(n,a);
+empId=id;
+}
+}
+class Staff extends Employee{
+Staff(String n,int a,int id){
+super(n,a,id);
+}
+}
+class Faculty extends Employee{
+String designation;
+Faculty(String n,int a,int id,String d){
+super(n,a,id);
+designation=d;
+}
+}
+public class DemoHierarchy{
+public static void main(String args[]){
+Student s=new Student("John",20,101,"CSE");
+s.display();
+Faculty f=new Faculty("Dr.Smith",45,200,"Professor");
+f.display();
+}
+}
+//inheritance teacher employee
+import java.util.*;
+class Employee {
+int id;
+String name;
+double salary;
+String address;
+Employee(int id, String name, double salary, String address) {
+this.id = id;
+this.name = name;
+this.salary = salary;
+this.address = address;
+}
+}
+class Teacher extends Employee {
+String dept, subject;
+Teacher(int id, String name, double salary, String address,
+String dept, String subject) {
+super(id, name, salary, address);
+this.dept = dept;
+this.subject = subject;
+}
+void display() {
+System.out.println(id + " " + name + " " + dept + " " + subject);
+}
+public static void main(String args[]) {
+Scanner sc = new Scanner(System.in);
+System.out.print("Enter number of teachers: ");
+int n = sc.nextInt();
+sc.nextLine();
+Teacher t[] = new Teacher[n];
+for (int i = 0; i < n; i++) {
+System.out.println("Enter details:");
+int id = sc.nextInt(); sc.nextLine();
+
+String name = sc.nextLine();
+double sal = sc.nextDouble(); sc.nextLine();
+String addr = sc.nextLine();
+String dept = sc.nextLine();
+String sub = sc.nextLine();
+t[i] = new Teacher(id, name, sal, addr, dept, sub);
+}
+for (Teacher x : t)
+x.display();
+}
+}
+//Employee add 
+import java.util.*;
+class Employee {
+int code;
+String name;
+float salary;
+
+
+
+Employee(int c,String n,float s){
+code=c;
+name=n;
+salary=s;
+}
+}
+public class EmployeeDemo {
+public static void main(String[] args) {
+ArrayList<Employee> list=new ArrayList<>();
+list.add(new Employee(1,"A",20000));
+list.add(new Employee(2,"B",35000));
+list.add(new Employee(3,"C",30000));
+Employee max=list.get(0);
+for(Employee e:list){
+if(e.salary>max.salary)
+max=e;
+}
+System.out.println("Highest salary:"+max.name);
+}
+}
+
+// file analysis
+import java.io.*;
+import java.util.*;
+public class FileAnalysis {
+public static void main(String[] args) throws Exception {
+File file = new File("data.txt");
+Scanner sc = new Scanner(file);
+
+int words = 0;
+int lines = 0;
+int chars = 0;
+while(sc.hasNextLine()) {
+String line = sc.nextLine();
+lines++;
+chars += line.length();
+
+
+String[] w = line.split(" ");
+words += w.length;
+}
+System.out.println("Lines: " + lines);
+System.out.println("Words: " + words);
+System.out.println("Characters: " + chars);
+sc.close();
+}
+}
+//interface prgm
+interface Exam {
+int getExamMarks();
+}
+interface Sports {
+int getSportsMarks();
+}
+
+
+class Result implements Exam, Sports {
+int examMarks, sportsMarks;
+Result(int e, int s) {
+examMarks = e;
+sportsMarks = s;
+}
+public int getExamMarks() {
+return examMarks;
+}
+public int getSportsMarks() {
+return sportsMarks;
+}
+void display() {
+int total = examMarks + sportsMarks;
+System.out.println("Exam Marks: " + examMarks);
+System.out.println("Sports Marks: " + sportsMarks);
+System.out.println("Total Score: " + total);
+}
+}
+public class InterfaceDemo {
+public static void main(String[] args) {
+Result r = new Result(80, 15);
+r.display();
+}
+}
+//list processing
+import java.util.*;
+public class ListProcessing {
+public static void main(String[] args) {
+ArrayList<Integer> list = new ArrayList<>();
+list.add(10);
+
+
+
+list.add(20);
+list.add(30);
+
+int sum = 0;
+for(int n : list)
+sum += n;
+System.out.println("Sum: " + sum);
+System.out.println("Average: " + sum/list.size());
+System.out.println("Max: " + Collections.max(list));
+System.out.println("Min: " + Collections.min(list));
+}
+}
+
+/shape implements
+import java.util.*;
+interface Shape {
+void area();
+void perimeter();
+}
+class Circle implements Shape {
+double r;
+Circle(double r) { this.r = r; }
+
+public void area() {
+System.out.println("Area = " + (3.14 * r * r));
+}
+public void perimeter() {
+System.out.println("Perimeter = " + (2 * 3.14 * r));
+}
+}
+class Rectangle implements Shape {
+double l, b;
+Rectangle(double l, double b) {
+this.l = l; this.b = b;
+}
+public void area() {
+System.out.println("Area = " + (l * b));
+}
+public void perimeter() {
+System.out.println("Perimeter = " + (2 * (l + b)));
+}
+}
+class Maain {
+public static void main(String args[]) {
+Scanner sc = new Scanner(System.in);
+System.out.println("1.Circle 2.Rectangle");
+int ch = sc.nextInt();
+if (ch == 1) {
+System.out.print("Enter radius: ");
+Circle c = new Circle(sc.nextDouble());
+c.area();
+c.perimeter();
+} else {
+System.out.print("Enter length & breadth: ");
+Rectangle r = new Rectangle(sc.nextDouble(), sc.nextDouble());
+r.area();
+r.perimeter();
+}
+}
+}
+//Book
+import java.util.*;
+class Book {
+String title, publisher;
+Book(String t, String p) {
+title = t;
+publisher = p;
+}
+}
+class Literature extends Book {
+
+Literature(String t, String p) {
+super(t, p);
+}
+void display() {
+System.out.println("Literature: " + title);
+}
+}
+class Fiction extends Book {
+Fiction(String t, String p) {
+super(t, p);
+}
+void display() {
+System.out.println("Fiction: " + title);
+}
+}
+public class Main {
+public static void main(String args[]) {
+Scanner sc = new Scanner(System.in);
+System.out.println("1.Literature 2.Fiction");
+int ch = sc.nextInt();
+sc.nextLine();
+System.out.print("Enter title: ");
+String t = sc.nextLine();
+System.out.print("Enter publisher: ");
+String p = sc.nextLine();
+if (ch == 1)
+new Literature(t, p).display();
+else
+new Fiction(t, p).display();
+}
+}
+//MapStudent
+import java.util.*;
+public class MapStudent {
+public static void main(String[] args) {
+HashMap<Integer,String> map = new HashMap<>();
+map.put(101,"Alice");
+map.put(102,"Bob");
+map.put(103,"Charlie");
+System.out.println("Student List:");
+for(Map.Entry<Integer,String> e : map.entrySet())
+System.out.println(e.getKey()+" "+e.getValue());
+System.out.println("Search ID 102: " + map.get(102));
+}
+}
+//Math expection
+import java.util.*;
+public class MathExceptionDemo {
+public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+try {
+int a = sc.nextInt();
+int b = sc.nextInt();
+System.out.println("Division: " + (a/b));
+System.out.println("Square Root: " + Math.sqrt(a));
+System.out.println("Log: " + Math.log(a));
+}
+catch(ArithmeticException e) {
+System.out.println("Division by zero not allowed");
+}
+catch(Exception e) {
+System.out.println("Invalid input");
+}
+}
+}
+//Matrix oprs
+import java.util.Scanner;
+class Matrix {
+
+int rows, cols;
+int[][] data;
+Matrix(int r, int c) {
+rows = r;
+cols = c;
+data = new int[r][c];
+}
+
+
+
+void readMatrix(Scanner sc) {
+for(int i=0;i<rows;i++)
+for(int j=0;j<cols;j++)
+data[i][j] = sc.nextInt();
+
+}
+Matrix add(Matrix m) {
+Matrix result = new Matrix(rows, cols);
+for(int i=0;i<rows;i++)
+for(int j=0;j<cols;j++)
+result.data[i][j] = data[i][j] + m.data[i][j];
+return result;
+}
+Matrix multiply(Matrix m) {
+Matrix result = new Matrix(rows, m.cols);
+for(int i=0;i<rows;i++)
+for(int j=0;j<m.cols;j++) {
+result.data[i][j] = 0;
+for(int k=0;k<cols;k++)
+result.data[i][j] += data[i][k] * m.data[k][j];
+}
+
+return result;
+}
+Matrix transpose() {
+Matrix t = new Matrix(cols, rows);
+for(int i=0;i<rows;i++)
+for(int j=0;j<cols;j++)
+t.data[j][i] = data[i][j];
+return t;
+}
+
+
+
+void display() {
+for(int i=0;i<rows;i++) {
+for(int j=0;j<cols;j++)
+System.out.print(data[i][j] + " ");
+System.out.println();
+}
+}
+}
+public class MatrixOperations {
+public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+int r = 2, c = 2;
+Matrix A = new Matrix(r,c);
+Matrix B = new Matrix(r,c);
+System.out.println("Enter Matrix A");
+A.readMatrix(sc);
+System.out.println("Enter Matrix B");
+B.readMatrix(sc);
+Matrix sum = A.add(B);
+Matrix product = A.multiply(B);
+Matrix transpose = A.transpose();
+System.out.println("Addition:");
+sum.display();
+System.out.println("Multiplication:");
+product.display();
+System.out.println("Transpose of Matrix A:");
+
+
+
+transpose.display();
+}
+}
+//mergefiles
+
+import java.io.*;
+import java.util.*;
+public class MergeFiles {
+public static void main(String[] args) throws Exception {
+Scanner f1 = new Scanner(new File("file1.txt"));
+Scanner f2 = new Scanner(new File("file2.txt"));
+ArrayList<Integer> list = new ArrayList<>();
+while(f1.hasNextInt())
+list.add(f1.nextInt());
+while(f2.hasNextInt())
+list.add(f2.nextInt());
+Collections.sort(list);
+PrintWriter out = new PrintWriter("merged.txt");
+for(int n : list) {
+out.println(n);
+
+
+
+System.out.println(n);
+}
+out.close();
+}
+}
+//Numberthreads
+import java.util.*;
+class NegativeThread extends Thread {
+int[] a;
+NegativeThread(int[] x) { a = x; }
+public void run() {
+for(int n : a)
+if(n < 0)
+System.out.println("Negative: " + n);
+
+}
+}
+class EvenThread extends Thread {
+int[] a;
+EvenThread(int[] x) { a = x; }
+
+
+
+public void run() {
+for(int n : a)
+if(n > 0 && n % 2 == 0)
+System.out.println("Positive Even: " + n);
+
+}
+}
+class OddThread extends Thread {
+int[] a;
+OddThread(int[] x) { a = x; }
+public void run() {
+for(int n : a)
+if(n > 0 && n % 2 != 0)
+System.out.println("Positive Odd: " + n);
+
+}
+}
+public class NumberThreads {
+public static void main(String[] args) {
+Random r = new Random();
+int[] arr = new int[10];
+for(int i=0;i<10;i++)
+arr[i] = r.nextInt(40)-20;
+new NegativeThread(arr).start();
+new EvenThread(arr).start();
+new OddThread(arr).start();
+}
+}
+//posteval
+import java.util.*;
+
+public class PostfixEval {
+    public static void main(String[] args) {
+        String expr = "23*54*+9-";
+        Stack<Integer> stack = new Stack<>();
+
+        for(char c : expr.toCharArray()) {
+            if(Character.isDigit(c))
+                stack.push(c - '0');
+            else {
+                int b = stack.pop();
+                int a = stack.pop();
+
+                switch(c){
+                    case '+': stack.push(a + b); break;
+                    case '-': stack.push(a - b); break;
+                    case '*': stack.push(a * b); break;
+                    case '/': stack.push(a / b); break;
+                }
+            }
+        }
+
+        System.out.println("Result: " + stack.pop());
+    }
+}
+//Queuedemo
+import java.util.*;
+public class QueueDemo {
+public static void main(String[] args) {
+Queue<String> queue = new LinkedList<>();
+queue.add("Customer1");
+queue.add("Customer2");
+queue.add("Customer3");
+while(!queue.isEmpty())
+System.out.println("Serving: " + queue.remove());
+}
+}
+//sports inheritance
+import java.util.*;
+class Student {
+int mark;
+}
+class Sports {
+int score;
+}
+class Result extends Student {
+void calculate(int score) {
+int total = mark + score;
+System.out.println("Total = " + total);
+}
+public static void main(String args[]) {
+Scanner sc = new Scanner(System.in);
+Result r = new Result();
+System.out.print("Enter academic mark: ");
+r.mark = sc.nextInt();
+System.out.print("Enter sports score: ");
+int s = sc.nextInt();
+r.calculate(s);
+}
+}
+//Setoprs
+import java.util.*;
+public class SetOperations {
+public static void main(String[] args) {
+HashSet<Integer> s1 = new HashSet<>();
+HashSet<Integer> s2 = new HashSet<>();
+s1.add(1); s1.add(2); s1.add(3);
+s2.add(2); s2.add(3); s2.add(4);
+HashSet<Integer> union = new HashSet<>(s1);
+union.addAll(s2);
+HashSet<Integer> inter = new HashSet<>(s1);
+inter.retainAll(s2);
+System.out.println("Union: " + union);
+System.out.println("Intersection: " + inter);
+}
+}
+//abstract area
+abstract class Shape{
+abstract double area();
+}
+class Circle extends Shape{
+double r;
+Circle(double r){this.r=r;}
+
+
+double area(){
+return Math.PI*r*r;
+}
+}
+class Rectangle extends Shape{
+double l,b;
+Rectangle(double l,double b){
+this.l=l;
+this.b=b;
+}
+double area(){
+return l*b;
+}
+}
+public class ShapeDemo{
+public static void main(String[] args){
+Circle c=new Circle(5);
+Rectangle r=new Rectangle(4,6);
+System.out.println("Circle Area:"+c.area());
+System.out.println("Rectangle Area:"+r.area());
+}
+}
+//stackthread
+import java.util.*;
+class PushThread extends Thread {
+Stack<Integer> stack;
+PushThread(Stack<Integer> s) {
+stack = s;
+}
+public void run() {
+for(int i=1;i<=5;i++) {
+stack.push(i);
+System.out.println("Pushed: " + i);
+}
+}
+}
+class PopThread extends Thread {
+Stack<Integer> stack;
+PopThread(Stack<Integer> s) {
+stack = s;
+}
+public void run() {
+for(int i=1;i<=5;i++) {
+if(!stack.empty())
+System.out.println("Popped: " + stack.pop());
+
+
+
+}
+}
+}
+public class StackThreadDemo {
+public static void main(String[] args) {
+Stack<Integer> stack = new Stack<>();
+PushThread p1 = new PushThread(stack);
+PopThread p2 = new PopThread(stack);
+p1.start();
+p2.start();
+}
+}
+//employee teacher
+import java.util.*;
+class Employee {
+int id;
+String name;
+double salary;
+String address;
+Employee(int id, String name, double salary, String address) {
+this.id = id;
+this.name = name;
+this.salary = salary;
+this.address = address;
+}
+}
+class Teacher extends Employee {
+String dept, subject;
+Teacher(int id, String name, double salary, String address,
+String dept, String subject) {
+super(id, name, salary, address);
+this.dept = dept;
+this.subject = subject;
+}
+void display() {
+System.out.println(id + " " + name + " " + dept + " " + subject);
+}
+public static void main(String args[]) {
+Scanner sc = new Scanner(System.in);
+System.out.print("Enter number of teachers: ");
+int n = sc.nextInt();
+sc.nextLine();
+Teacher t[] = new Teacher[n];
+for (int i = 0; i < n; i++) {
+System.out.println("Enter details:");
+int id = sc.nextInt(); sc.nextLine();
+
+String name = sc.nextLine();
+double sal = sc.nextDouble(); sc.nextLine();
+String addr = sc.nextLine();
+String dept = sc.nextLine();
+String sub = sc.nextLine();
+t[i] = new Teacher(id, name, sal, addr, dept, sub);
+}
+for (Teacher x : t)
+x.display();
+}
+}
