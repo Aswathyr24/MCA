@@ -1,0 +1,542 @@
+//Read 2 matrices from the console and perform matrix addition.
+import java.util.Scanner;
+
+class Product {
+    int pcode;
+    String pname;
+    double price;
+
+    void getData(Scanner sc) {
+        System.out.print("Enter Product Code: ");
+        pcode = sc.nextInt();
+
+        System.out.print("Enter Product Name: ");
+        pname = sc.next();
+
+        System.out.print("Enter Price: ");
+        price = sc.nextDouble();
+    }
+
+    void display() {
+        System.out.println(pcode + " " + pname + " " + price);
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        Product p1 = new Product();
+        Product p2 = new Product();
+        Product p3 = new Product();
+
+        System.out.println("Enter details of Product 1");
+        p1.getData(sc);
+
+        System.out.println("Enter details of Product 2");
+        p2.getData(sc);
+
+        System.out.println("Enter details of Product 3");
+        p3.getData(sc);
+
+        Product min = p1;
+
+        if (p2.price < min.price)
+            min = p2;
+
+        if (p3.price < min.price)
+            min = p3;
+
+        System.out.println("\nLowest Price Product:");
+        min.display();
+    }
+}
+
+//Read 2 matrices from the console and perform matrix addition.
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int r, c;
+
+        // Read rows and columns
+        System.out.print("Enter number of rows: ");
+        r = sc.nextInt();
+
+        System.out.print("Enter number of columns: ");
+        c = sc.nextInt();
+
+        // Create matrices
+        int A[][] = new int[r][c];
+        int B[][] = new int[r][c];
+        int sum[][] = new int[r][c];
+
+        // Input first matrix
+        System.out.println("Enter first matrix:");
+        for(int i = 0; i < r; i++) {
+            for(int j = 0; j < c; j++) {
+                A[i][j] = sc.nextInt();
+            }
+        }
+
+        // Input second matrix
+        System.out.println("Enter second matrix:");
+        for(int i = 0; i < r; i++) {
+            for(int j = 0; j < c; j++) {
+                B[i][j] = sc.nextInt();
+            }
+        }
+
+        // Matrix addition
+        for(int i = 0; i < r; i++) {
+            for(int j = 0; j < c; j++) {
+                sum[i][j] = A[i][j] + B[i][j];
+            }
+        }
+
+        // Display result
+        System.out.println("Sum Matrix:");
+
+        for(int i = 0; i < r; i++) {
+            for(int j = 0; j < c; j++) {
+                System.out.print(sum[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        sc.close();
+    }
+}
+//Add 2 complex numbers
+
+public class Complex {
+int real;
+int imaginary;
+public Complex(int real,int imag){
+this.real = real;
+this.imaginary = imag;
+}
+public static Complex sum(complex c1,complex c2){
+complex temp = new Complex(0,0);
+temp.real = c1.real + c2.real;
+temp.imaginary = c1.imaginary + c2.imaginary;
+return temp;
+}
+public static void main(String []args){
+Complex first = new Complex(1,2);
+Complex second = new Complex(32,22);
+Complex temp = sum(first,second);
+System.out.println("Sum is : " + temp.real + "+" +temp.imaginary + "i");
+}
+}
+
+//Read a matrix from the console and check whether it is symmetric or not.
+
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int n;
+        System.out.print("Enter size of matrix: ");
+        n = sc.nextInt();
+
+        int a[][] = new int[n][n];
+
+        System.out.println("Enter matrix:");
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < n; j++) {
+                a[i][j] = sc.nextInt();
+            }
+        }
+
+        boolean symmetric = true;
+
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < n; j++) {
+                if(a[i][j] != a[j][i]) {
+                    symmetric = false;
+                    break;
+                }
+            }
+        }
+
+        if(symmetric)
+            System.out.println("Matrix is Symmetric");
+        else
+            System.out.println("Matrix is Not Symmetric");
+    }
+}
+
+//Create CPU with attribute price. Create inner class Processor (no. of cores, manufacturer) and static
+nested class RAM (memory, manufacturer). Create an object of CPU and print information of
+Processor and RAM.
+
+class Cpu {
+int price;
+public Cpu(int p) {
+this.price = p;
+}
+void display() {
+System.out.println("Price of CPU : " + this.price);
+
+15
+
+}
+class Processor{
+int cores;
+String manufacture;
+Processor(int core, String manf) {
+this.cores = core;
+this.manufacture = manf;
+}
+void display() {
+System.out.println("No of Cores : " + this.cores);
+System.out.println("Processor manufactures : " + this.manufacture);
+}
+}
+static class Ram {
+int memory;
+String manufacture;
+Ram(int n, String m) {
+this.memory = n;
+this.manufacture = m;
+}
+void display() {
+System.out.println("Memory Size : " + this.memory);
+System.out.println("Memory manufactures : " + this.manufacture);
+}
+}
+public static void main(String[] args) {
+Cpu intel = new Cpu(23000);
+Cpu.Processor p= intel.new Processor(8,"Intel");
+Cpu.Ram ram = new Ram(64, "Asus");
+intel.display();
+p.display();
+ram.display();
+}}
+
+//Create classes Student and Sports. Create another class Result inherited from Student and Sports.
+Display the academic and sports score of a student.
+
+import java.util.*;
+import java.io.*;
+interface Sports {
+public void sports_getData();
+public void sports_dispData();
+}
+class Student {
+String name;
+int roll_no;
+int score;
+
+36
+Student(String name,int roll, int m1) {
+this.name = name;
+this.roll_no = roll;
+this.score = m1;
+}
+void display() {
+System.out.println("Student Details");
+System.out.println("Name of Student: " + name);
+System.out.println("Roll No: " + roll_no);
+System.out.println("Academic score: " + score);
+}
+}
+class Result extends Student implements Sports {
+int score;
+Scanner sc = new Scanner(System.in);
+Result(String name, int roll, int m1) {
+super(name, roll, m1);
+}
+public void sports_getData() {
+System.out.print("Enter the Score you have obtain in sports");
+score = sc.nextInt();
+}
+public void sports_dispData() {
+System.out.println("Sports score:" + score);
+}
+}
+class co3_5 {
+public static void main(String args[]){
+String name;
+int roll,mark;
+Scanner sc = new Scanner(System.in);
+System.out.print("enter the name:");
+name = sc.nextLine();
+System.out.print("enter the roll no:");
+roll = sc.nextInt();
+System.out.print("enter the academic score:");
+mark = sc.nextInt();
+Result re = new Result(name,roll,mark);
+re.sports_getData();
+re.display();
+re.sports_dispData();
+}
+}
+
+//Create a class ‘Employee’ with data members Empid, Name, Salary, Address and constructors to
+initialize the data members. Create another class ‘Teacher’ that inherit the properties of class
+employee and contain its own data members department, Subjectstaught and constructors to initialize
+these data members and also include display function to display all the data members. Use array of
+objects to display details of N teachers.
+
+import java.util.Scanner;
+class Employee {
+int id;
+String name;
+int sal;
+String address;
+Employee(int id, String name, int sal, String address) {
+this.id = id;
+this.name = name;
+this.sal = sal;
+this.address = address;
+}
+
+27
+
+public void display() {
+System.out.println("Employee id: " + this.id);
+System.out.println("Employee name: " + this.name);
+System.out.println("Employee salary: " + this.sal);
+System.out.println("Employee address: " + this.address);
+}
+}
+class Teacher extends Employee {
+String dept;
+String sub;
+Teacher(int id, String name, int sal, String address, String dept, String sub) {
+super(id, name, sal, address);
+this.dept = dept;
+this.sub = sub;
+}
+public void display() {
+super.display();
+System.out.println("Department: " + this.dept);
+System.out.println("Subject: " + this.sub);
+}
+}
+public class co3_2 {
+public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+System.out.print("Enter number of teachers: ");
+int n = sc.nextInt();
+sc.nextLine();
+Teacher[] t = new Teacher[n];
+for (int i = 0; i < n; i++) {
+System.out.println("Enter details for teacher " + (i + 1) + ":");
+
+System.out.print("ID: ");
+
+int id = sc.nextInt();
+sc.nextLine();
+System.out.print("Name: ");
+String name = sc.nextLine();
+System.out.print("Salary: ");
+int sal = sc.nextInt();
+sc.nextLine();
+System.out.print("Address: ");
+String address = sc.nextLine();
+
+28
+
+System.out.print("Department: ");
+String dept = sc.nextLine();
+System.out.print("Subject: ");
+String sub = sc.nextLine();
+t[i] = new Teacher(id, name, sal, address, dept, sub);
+}
+System.out.println("\nTeacher Details:\n");
+for (int i = 0; i < n; i++) {
+t[i].display();
+System.out.println();
+}
+sc.close();
+}
+}
+
+//Area of different shapes using overloaded functions
+
+public class Area{
+//circle
+public double area(double r){
+return Math.PI*r*r;
+}
+// rectangle
+public double area(double l,double w){
+return l*w;
+}
+// triangle
+public double area(int b,int h){
+return 0.5*b*h;
+}
+// square
+public int area(int l){
+
+25
+
+return l*l;
+}
+public static void main(String[] args){
+Area obj = new Area();
+System.out.println("area of circle r=5: "+obj.area(5.0));
+System.out.println("area of rectangle(3,4): "+obj.area(3.0,4.0));
+System.out.println("area of triangle(4,3): "+obj.area(4,3));
+System.out.println("area of square(8): "+obj.area(5));
+}
+}
+
+//Perform string manipulations.
+
+Import java.util.*.;
+public class SimpleString {
+public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+
+System.out.print("Enter a string: ");
+String str = sc.nextLine();
+System.out.println("Length: " + str.length());
+System.out.println("Uppercase: " + str.toUpperCase());
+
+String rev = "";
+for (int i = str.length() - 1; i >= 0; i--) {
+rev = rev + str.charAt(i);
+}
+System.out.println("Uppercase: " + str.toUpperCase());
+}
+}
+
+//Program to create a class for Employee having attributes eNo, eName eSalary. Read n employ
+information and Search for an employee given eNo, using the concept of Array of Objects.
+
+Import java.util.*;
+class Employee {
+int eNo;
+String eName;
+double eSalary;
+}
+public class EmployeeSearch {
+public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+System.out.print("Enter number of employees: ");
+int n = sc.nextInt();
+
+23
+
+Employee[] emp = new Employee[n];
+for (int i = 0; i < n; i++) {
+emp[i] = new Employee();
+System.out.println("\nEmployee " + (i + 1));
+System.out.print("Enter eNo: ");
+emp[i].eNo = sc.nextInt();
+sc.nextLine();
+System.out.print("Enter Name: ");
+emp[i].eName = sc.nextLine();
+System.out.print("Enter Salary: ");
+emp[i].eSalary = sc.nextDouble();
+}
+System.out.print("\nEnter eNo to search: ");
+int key = sc.nextInt();
+boolean found = false;
+for (int i = 0; i < n; i++) {
+if (emp[i].eNo == key) {
+System.out.println("Employee Found:");
+System.out.println("No: " + emp[i].eNo);
+System.out.println("Name: " + emp[i].eName);
+System.out.println("Salary: " + emp[i].eSalary); found = true;
+break;
+} }
+if (!found) {
+System.out.println("Employee not found");
+}}}
+
+//Write a Program to create a generic stack and do the Push and Pop operations.
+
+import java.util.*;
+class Stack<T> {
+ArrayList<T> list = new ArrayList<>();
+void push(T x) { list.add(x);
+}
+void pop() { if(list.isEmpty())
+System.out.println("Empty"); else
+System.out.println("Popped: " + list.remove(list.size()-1));
+}
+}
+public class StackTest {
+public static void main(String[] args) {
+Stack<Integer> s = new Stack<>(); s.push(10);
+s.push(20);
+s.pop();
+}
+}
+
+//Maintain a list of Strings using ArrayList from collection framework, perform built-in operations.
+
+import java.util.*;
+public class ArrayListTest {
+public static void main(String[] args) {
+ArrayList<String> list = new ArrayList<>();
+
+list.add("Apple");
+list.add("Banana");
+list.add("Mango");
+System.out.println("List: " + list);
+list.remove("Banana");
+System.out.println("After remove: " + list);
+System.out.println("Contains Apple? " + list.contains("Apple"));
+
+}
+
+//Skew Symmetric
+import java.util.Scanner;
+class SkewMatrix{
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		
+		int n,i,j;
+		System.out.println("Enter the matrix size: ");
+		n = sc.nextInt();
+		
+		int a[][] = new int[n][n];
+               
+		
+		System.out.println("Enter the matrix: ");
+		for(i=0;i<n;i++)
+		{
+			for(j=0;j<n;j++)
+			{
+			 	a[i][j] = sc.nextInt();
+			 }
+		}
+		
+		boolean skew = true;
+		
+		for(i=0;i<n;i++)
+		{
+			for(j=0;j<n;j++)
+			{
+				if(a[i][j] != -a[j][i])
+				{
+					skew = false;
+					break;
+				}
+			}
+		}
+		
+		if(skew)
+		{
+			System.out.println("The matrix is Skew-Symmetric ");
+		}
+		else
+		{
+			System.out.println("The matrix is not Skew-Symmetric ");
+		}
+	}
+}
